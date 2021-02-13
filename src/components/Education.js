@@ -7,23 +7,23 @@ const Education = (props) => {
       <div>
         <form className="formData" onSubmit={props.handleSubmit}>
           <div>
-            <label for="schoolName">School Name</label>
+            <label htmlFor="schoolName">School Name</label>
             <input type="text" placeholder="School Name"></input>
           </div>
           <div>
-            <label for="major">Major</label>
+            <label htmlFor="major">Major</label>
             <input type="text" placeholder="Major"></input>
           </div>
           <div>
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input type="email" placeholder="Years of Study"></input>
           </div>
           <div>
-            <label for="city">City</label>
+            <label htmlFor="city">City</label>
             <input type="text" placeholder="City"></input>
           </div>
           <div>
-            <label for="description">Description</label>
+            <label htmlFor="description">Description</label>
             <textarea type="date" placeholder="Description"></textarea>
           </div>
         </form>
@@ -31,6 +31,7 @@ const Education = (props) => {
           <button>Cancel</button>
           <button>Submit</button>
           <button>Add Education</button>
+          {props.showEdit ? <button>Edit</button> : null}
         </div>
       </div>
     </div>

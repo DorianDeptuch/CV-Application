@@ -7,23 +7,23 @@ const Work = (props) => {
       <div>
         <form className="formData" onSubmit={props.handleSubmit}>
           <div>
-            <label for="companyName">Company Name</label>
+            <label htmlFor="companyName">Company Name</label>
             <input type="text" placeholder="Company Name"></input>
           </div>
           <div>
-            <label for="role">Role</label>
+            <label htmlFor="role">Role</label>
             <input type="text" placeholder="Role"></input>
           </div>
           <div>
-            <label for="yearsOfWork">Years of Work</label>
+            <label htmlFor="yearsOfWork">Years of Work</label>
             <input type="email" placeholder="Years of Work"></input>
           </div>
           <div>
-            <label for="city">City</label>
+            <label htmlFor="city">City</label>
             <input type="text" placeholder="City"></input>
           </div>
           <div>
-            <label for="description">Description</label>
+            <label htmlFor="description">Description</label>
             <textarea type="date" placeholder="Description"></textarea>
           </div>
         </form>
@@ -31,6 +31,7 @@ const Work = (props) => {
           <button>Cancel</button>
           <button>Submit</button>
           <button>Add Work Experience</button>
+          {props.showEdit ? <button>Edit</button> : null}
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import Intro from "./components/Intro";
 import Education from "./components/Education";
 import Work from "./components/Work";
 import Skills from "./components/Skills";
+import Preview from "./components/Preview";
 import "./App.css";
 
 class App extends React.Component {
@@ -10,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       previewText: "Preview",
+      visible: true,
       firstName: "",
       lastName: "",
       email: "",
@@ -26,10 +28,10 @@ class App extends React.Component {
       workCity: "",
       workDescription: "",
       skills: "",
-      infoExpanded: false,
-      schoolExpanded: false,
-      workExpanded: false,
-      skillsExpanded: false,
+      // infoExpanded: false,
+      // schoolExpanded: false,
+      // workExpanded: false,
+      // skillsExpanded: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -38,7 +40,10 @@ class App extends React.Component {
   }
 
   handleClick() {
-    this.setState({});
+    this.setState((previousState) => ({
+      showEdit: !previousState.showEdit,
+    }));
+    console.log(this.state.showEdit);
   }
 
   handleChange(e) {
@@ -49,7 +54,9 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({});
+    this.setState((previousState) => ({
+      showEdit: !previousState.showEdit,
+    }));
   }
 
   handlePreview(e) {
@@ -58,6 +65,7 @@ class App extends React.Component {
         previousState.previewText === "Preview"
           ? (e.target.textContent = "Close")
           : (e.target.textContent = "Preview"),
+      visible: !previousState.visible,
     }));
   }
 
@@ -66,18 +74,57 @@ class App extends React.Component {
       <div className="App">
         <h1>CV APP</h1>
         <button onClick={this.handlePreview}>Preview</button>
-        <Intro
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          firstName={this.state.firstName}
-          lastName={this.state.lastName}
-          email={this.state.email}
-          phone={this.state.phone}
-          dob={this.state.dob}
-        />
-        <Education handleSubmit={this.handleSubmit} />
-        <Work handleSubmit={this.handleSubmit} />
-        <Skills handleSubmit={this.handleSubmit} />
+        {this.state.visible ? (
+          <Intro
+            showEdit={this.state.showEdit}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            firstName={this.state.firstName}
+            lastName={this.state.lastName}
+            email={this.state.email}
+            phone={this.state.phone}
+            dob={this.state.dob}
+          />
+        ) : null}
+        {this.state.visible ? (
+          <Education
+            showEdit={this.state.showEdit}
+            handleSubmit={this.handleSubmit}
+          />
+        ) : null}
+        {this.state.visible ? (
+          <Work
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
+        ) : null}
+        {this.state.visible ? (
+          <Skills
+            showEdit={this.state.showEdit}
+            handleSubmit={this.handleSubmit}
+            handleClick={this.handleClick}
+          />
+        ) : null}
+        {!this.state.visible ? (
+          <Preview
+            firstName={this.state.firstName}
+            lastName={this.state.lastName}
+            email={this.state.email}
+            phone={this.state.phone}
+            dob={this.state.dob}
+            schoolName={this.state.schoolName}
+            major={this.state.major}
+            yearsOfStudy={this.state.yearsOfStudy}
+            schoolCity={this.state.schoolCity}
+            schoolDescription={this.state.schoolDescription}
+            companyName={this.state.companyName}
+            role={this.state.role}
+            yearsOfWork={this.state.yearsOfWork}
+            workCity={this.state.workCity}
+            workDescription={this.state.workDescription}
+            skills={this.state.skills}
+          />
+        ) : null}
       </div>
     );
   }

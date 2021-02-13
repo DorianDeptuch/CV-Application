@@ -3,7 +3,28 @@ import React from "react";
 class Intro extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showEdit: false,
+      showCancel: false,
+    };
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
+
+  handleEdit() {
+    this.setState((previousState) => ({
+      showEdit: !previousState.showEdit,
+    }));
+    console.log(this.state.showEdit);
+  }
+
+  handleCancel() {
+    this.setState((previousState) => ({
+      showCancel: !previousState.showCancel,
+    }));
+    console.log(this.state.showCancel);
+  }
+
   render() {
     return (
       <div className="Section">
@@ -11,7 +32,7 @@ class Intro extends React.Component {
         <div>
           <form className="formData" onSubmit={this.props.handleSubmit}>
             <div>
-              <label for="firstName">First Name</label>
+              <label htmlFor="firstName">First Name</label>
               <input
                 type="text"
                 placeholder="First Name"
@@ -21,19 +42,19 @@ class Intro extends React.Component {
               {/* <p>{this.props.firstName}</p> */}
             </div>
             <div>
-              <label for="lastName">Last Name</label>
+              <label htmlFor="lastName">Last Name</label>
               <input type="text" placeholder="Last Name"></input>
             </div>
             <div>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input type="email" placeholder="Email"></input>
             </div>
             <div>
-              <label for="phone">Phone</label>
+              <label htmlFor="phone">Phone</label>
               <input type="text" placeholder="Phone"></input>
             </div>
             <div>
-              <label for="dateOfBirth">Description</label>
+              <label htmlFor="dateOfBirth">Description</label>
               <input
                 type="text"
                 placeholder="Date of Birth (DD-MM-YYYY)"
@@ -42,9 +63,13 @@ class Intro extends React.Component {
             </div>
           </form>
           <div className="addCancelDiv">
-            <button>Cancel</button>
-            <button>Submit</button>
-            {/* <button>Edit</button> make submit turn into an edit button after submitting */}
+            {this.state.showCancel ? <button>Cancel</button> : null}
+            {!this.state.showEdit ? (
+              <button onClick={this.handleEdit}>Submit</button>
+            ) : null}
+            {this.state.showEdit ? (
+              <button onClick={this.handleCancel}>Edit</button>
+            ) : null}
           </div>
         </div>
       </div>
