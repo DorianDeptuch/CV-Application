@@ -28,10 +28,6 @@ class App extends React.Component {
       workCity: "",
       workDescription: "",
       skills: "",
-      // infoExpanded: false,
-      // schoolExpanded: false,
-      // workExpanded: false,
-      // skillsExpanded: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -48,8 +44,9 @@ class App extends React.Component {
 
   handleChange(e) {
     this.setState({
-      text: e.target.value,
+      skills: e.target.value,
     });
+    console.log(this.state.skills);
   }
 
   handleSubmit(e) {
@@ -73,7 +70,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>CV APP</h1>
-        <button onClick={this.handlePreview}>Preview</button>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <button onClick={this.handlePreview}>Preview</button>
+          {!this.state.visible ? (
+            <button onClick={window.print}>Print</button>
+          ) : null}
+        </div>
         {this.state.visible ? (
           <Intro
             showEdit={this.state.showEdit}
@@ -102,7 +104,8 @@ class App extends React.Component {
           <Skills
             showEdit={this.state.showEdit}
             handleSubmit={this.handleSubmit}
-            handleClick={this.handleClick}
+            handleChange={this.handleChange}
+            handleEdit={this.handleEdit}
           />
         ) : null}
         {!this.state.visible ? (
@@ -129,5 +132,7 @@ class App extends React.Component {
     );
   }
 }
+
+// consider adding a button to add work experience, etc, by making a new component
 
 export default App;

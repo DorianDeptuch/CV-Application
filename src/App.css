@@ -41,8 +41,8 @@ code {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 -5px 30px rgba(0, 0, 0, 0.15);
   background-color: #fff;
   border-radius: 20px;
-  background-color: rgb(255, 255, 255);
 }
+
 .formData {
   display: flex;
   flex-direction: row;
@@ -109,10 +109,10 @@ button {
   justify-content: left;
   width: 80%;
   padding: 2rem;
-}
-
-.previewDiv > div {
-  /* display:flex */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 -5px 30px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  border-radius: 20px;
+  line-height: 0.85rem;
 }
 
 .previewDiv > div > h3 {
