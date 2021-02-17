@@ -16,6 +16,16 @@ class Intro extends React.Component {
   }
 
   render() {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      dob,
+      handleChange,
+      handleSubmit,
+    } = this.props;
+
     return (
       <div className="Section">
         <h1 style={{ textAlign: "center" }}>Your Info</h1>
@@ -24,7 +34,7 @@ class Intro extends React.Component {
             <form
               name="introSubmit"
               className="formData"
-              onSubmit={this.props.handleSubmit}
+              onSubmit={handleSubmit}
             >
               <div>
                 <label htmlFor="firstName">First Name</label>
@@ -32,8 +42,8 @@ class Intro extends React.Component {
                   type="text"
                   name="firstName"
                   placeholder="First Name"
-                  value={this.props.firstName}
-                  onChange={this.props.handleChange}
+                  value={firstName}
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -42,8 +52,8 @@ class Intro extends React.Component {
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
-                  value={this.props.lastName}
-                  onChange={this.props.handleChange}
+                  value={lastName}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -52,8 +62,8 @@ class Intro extends React.Component {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  value={this.props.email}
-                  onChange={this.props.handleChange}
+                  value={email}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -62,8 +72,8 @@ class Intro extends React.Component {
                   type="text"
                   name="phone"
                   placeholder="Phone"
-                  value={this.props.phone}
-                  onChange={this.props.handleChange}
+                  value={phone}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -72,8 +82,8 @@ class Intro extends React.Component {
                   type="text"
                   name="dob"
                   placeholder="Date of Birth (DD-MM-YYYY)"
-                  value={this.props.dob}
-                  onChange={this.props.handleChange}
+                  value={dob}
+                  onChange={handleChange}
                   // pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
                 ></input>
               </div>
@@ -90,23 +100,23 @@ class Intro extends React.Component {
               </h2>
               <p>
                 <b>First Name: </b>
-                {this.props.firstName}
+                {firstName}
               </p>
               <p>
                 <b>Last Name: </b>
-                {this.props.lastName}
+                {lastName}
               </p>
               <p>
                 <b>Email: </b>
-                {this.props.email}
+                {email}
               </p>
               <p>
                 <b>Phone: </b>
-                {this.props.phone}
+                {phone}
               </p>
               <p>
                 <b>Date of birth: </b>
-                {this.props.dob}
+                {dob}
               </p>
               <div className="addCancelDiv">
                 <button type="button" onClick={this.handleEdit}>

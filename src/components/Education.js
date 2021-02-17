@@ -16,6 +16,16 @@ class Education extends React.Component {
     }));
   }
   render() {
+    const {
+      schoolName,
+      major,
+      yearsOfStudy,
+      schoolCity,
+      schoolDescription,
+      handleChange,
+      handleSubmit,
+    } = this.props;
+
     return (
       <div className="Section">
         <h1 style={{ textAlign: "center" }}>Education</h1>
@@ -24,7 +34,7 @@ class Education extends React.Component {
             <form
               name="schoolSubmit"
               className="formData"
-              onSubmit={this.props.handleSubmit}
+              onSubmit={handleSubmit}
             >
               <div>
                 <label htmlFor="schoolName">School Name</label>
@@ -32,8 +42,8 @@ class Education extends React.Component {
                   type="text"
                   name="schoolName"
                   placeholder="School Name"
-                  value={this.props.schoolName}
-                  onChange={this.props.handleChange}
+                  value={schoolName}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -42,8 +52,8 @@ class Education extends React.Component {
                   type="text"
                   name="major"
                   placeholder="Major"
-                  value={this.props.major}
-                  onChange={this.props.handleChange}
+                  value={major}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -52,8 +62,8 @@ class Education extends React.Component {
                   type="text"
                   name="yearsOfStudy"
                   placeholder="Years of Study"
-                  value={this.props.yearsOfStudy}
-                  onChange={this.props.handleChange}
+                  value={yearsOfStudy}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -62,8 +72,8 @@ class Education extends React.Component {
                   type="text"
                   name="schoolCity"
                   placeholder="City"
-                  value={this.props.schoolCity}
-                  onChange={this.props.handleChange}
+                  value={schoolCity}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -71,8 +81,8 @@ class Education extends React.Component {
                 <textarea
                   name="schoolDescription"
                   placeholder="Description"
-                  value={this.props.schoolDescription}
-                  onChange={this.props.handleChange}
+                  value={schoolDescription}
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div className="addCancelDiv">
@@ -88,23 +98,23 @@ class Education extends React.Component {
               </h2>
               <p>
                 <b>School Name: </b>
-                {this.props.schoolName}
+                {schoolName}
               </p>
               <p>
                 <b>Major: </b>
-                {this.props.major}
+                {major}
               </p>
               <p>
                 <b>Years of study: </b>
-                {this.props.yearsOfStudy}
+                {yearsOfStudy}
               </p>
               <p>
                 <b>City: </b>
-                {this.props.schoolCity}
+                {schoolCity}
               </p>
               <p>
                 <b>Description: </b>
-                {this.props.schoolDescription}
+                {schoolDescription}
               </p>
               <div className="addCancelDiv">
                 <button onClick={this.handleEdit}>Edit</button>

@@ -16,6 +16,8 @@ class Skills extends React.Component {
   }
 
   render() {
+    const { skills, handleChange, handleSubmit } = this.props;
+
     return (
       <div className="Section">
         <h1 style={{ textAlign: "center" }}>Additional Skills</h1>
@@ -24,15 +26,15 @@ class Skills extends React.Component {
             <form
               name="skillsSubmit"
               className="formData"
-              onSubmit={this.props.handleSubmit}
+              onSubmit={handleSubmit}
             >
               <div>
                 <label htmlFor="skills">Name one or more Skill(s)</label>
                 <textarea
                   name="skills"
                   placeholder="Name one or more Skill(s)"
-                  value={this.props.skills}
-                  onChange={this.props.handleChange}
+                  value={skills}
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div className="addCancelDiv">
@@ -47,7 +49,7 @@ class Skills extends React.Component {
                 <u>Skills</u>
               </h2>
               <b>Skills: </b>
-              <p>{this.props.skills}</p>
+              <p>{skills}</p>
               <div className="addCancelDiv">
                 <button onClick={this.handleEdit}>Edit</button>
               </div>

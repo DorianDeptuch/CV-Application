@@ -16,6 +16,16 @@ class Work extends React.Component {
   }
 
   render() {
+    const {
+      companyName,
+      role,
+      yearsOfWork,
+      workCity,
+      workDescription,
+      handleChange,
+      handleSubmit,
+    } = this.props;
+
     return (
       <div className="Section">
         <h1 style={{ textAlign: "center" }}>Work Experience</h1>
@@ -24,7 +34,7 @@ class Work extends React.Component {
             <form
               name="workSubmit"
               className="formData"
-              onSubmit={this.props.handleSubmit}
+              onSubmit={handleSubmit}
             >
               <div>
                 <label htmlFor="companyName">Company Name</label>
@@ -32,8 +42,8 @@ class Work extends React.Component {
                   type="text"
                   name="companyName"
                   placeholder="Company Name"
-                  onChange={this.props.handleChange}
-                  value={this.props.companyName}
+                  onChange={handleChange}
+                  value={companyName}
                 ></input>
               </div>
               <div>
@@ -42,8 +52,8 @@ class Work extends React.Component {
                   type="text"
                   name="role"
                   placeholder="Role"
-                  value={this.props.role}
-                  onChange={this.props.handleChange}
+                  value={role}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -52,8 +62,8 @@ class Work extends React.Component {
                   type="email"
                   name="yearsOfWork"
                   placeholder="Years of Work"
-                  value={this.props.yearsOfWork}
-                  onChange={this.props.handleChange}
+                  value={yearsOfWork}
+                  onChange={handleChange}
                 ></input>
               </div>
               <div>
@@ -62,8 +72,8 @@ class Work extends React.Component {
                   type="text"
                   name="workCity"
                   placeholder="City"
-                  onChange={this.props.handleChange}
-                  value={this.props.workCity}
+                  onChange={handleChange}
+                  value={workCity}
                 ></input>
               </div>
               <div>
@@ -71,8 +81,8 @@ class Work extends React.Component {
                 <textarea
                   name="workDescription"
                   placeholder="Description"
-                  value={this.props.workDescription}
-                  onChange={this.props.handleChange}
+                  value={workDescription}
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div className="addCancelDiv">
@@ -88,23 +98,23 @@ class Work extends React.Component {
               </h2>
               <p>
                 <b>Company name: </b>
-                {this.props.companyName}
+                {companyName}
               </p>
               <p>
                 <b>Role: </b>
-                {this.props.role}
+                {role}
               </p>
               <p>
                 <b>Years of work: </b>
-                {this.props.yearsOfWork}
+                {yearsOfWork}
               </p>
               <p>
                 <b>City: </b>
-                {this.props.workCity}
+                {workCity}
               </p>
               <p>
                 <b>Description: </b>
-                {this.props.workDescription}
+                {workDescription}
               </p>
               <div className="addCancelDiv">
                 <button onClick={this.handleEdit}>Edit</button>
