@@ -12,6 +12,10 @@ class App extends React.Component {
     this.state = {
       previewText: "Preview",
       visible: true,
+      // introSubmit: false,
+      // workSubmit: false,
+      // schoolSubmit: false,
+      // skillsSubmit: false,
       firstName: "",
       lastName: "",
       email: "",
@@ -29,31 +33,25 @@ class App extends React.Component {
       workDescription: "",
       skills: "",
     };
-    this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePreview = this.handlePreview.bind(this);
   }
 
-  handleClick() {
-    this.setState((previousState) => ({
-      showEdit: !previousState.showEdit,
-    }));
-    console.log(this.state.showEdit);
-  }
-
   handleChange(e) {
+    let name = e.target.name;
     this.setState({
-      skills: e.target.value,
+      [name]: e.target.value,
     });
-    console.log(this.state.skills);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState((previousState) => ({
-      showEdit: !previousState.showEdit,
+    let formName = e.target.name;
+    this.setState((prev) => ({
+      [formName]: !prev.formName,
     }));
+    //Fix this??
   }
 
   handlePreview(e) {
@@ -64,6 +62,9 @@ class App extends React.Component {
           : (e.target.textContent = "Preview"),
       visible: !previousState.visible,
     }));
+  }
+  componentDidUpdate() {
+    console.log(this.state);
   }
 
   render() {
@@ -78,7 +79,6 @@ class App extends React.Component {
         </div>
         {this.state.visible ? (
           <Intro
-            showEdit={this.state.showEdit}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
             firstName={this.state.firstName}
@@ -90,22 +90,31 @@ class App extends React.Component {
         ) : null}
         {this.state.visible ? (
           <Education
-            showEdit={this.state.showEdit}
             handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            schoolName={this.state.schoolName}
+            major={this.state.major}
+            yearsOfStudy={this.state.yearsOfStudy}
+            schoolCity={this.state.schoolCity}
+            schoolDescription={this.state.schoolDescription}
           />
         ) : null}
         {this.state.visible ? (
           <Work
-            handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            companyName={this.state.companyName}
+            role={this.state.role}
+            yearsOfWork={this.state.yearsOfWork}
+            workCity={this.state.workCity}
+            workDescription={this.state.workDescription}
           />
         ) : null}
         {this.state.visible ? (
           <Skills
-            showEdit={this.state.showEdit}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
-            handleEdit={this.handleEdit}
+            skills={this.state.skills}
           />
         ) : null}
         {!this.state.visible ? (
@@ -132,7 +141,12 @@ class App extends React.Component {
     );
   }
 }
-
+//  TODO
 // consider adding a button to add work experience, etc, by making a new component
+// Add regex patterns for each input and form validation
+// Figure out error: "Form submission canceled because the form is not connected"
+// Figure out why when I come out of preview mode, the forms show back up instead of the submitted content
+// Re-arrange order of attributes in each module to stay consistent
+// Add a Date method to change Date of birth to Date String
 
 export default App;

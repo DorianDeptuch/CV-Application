@@ -21,14 +21,24 @@ class Skills extends React.Component {
         <h1 style={{ textAlign: "center" }}>Additional Skills</h1>
         <div>
           {!this.state.showEdit ? (
-            <form className="formData" onSubmit={this.props.handleSubmit}>
+            <form
+              name="skillsSubmit"
+              className="formData"
+              onSubmit={this.props.handleSubmit}
+            >
               <div>
                 <label htmlFor="skills">Name one or more Skill(s)</label>
                 <textarea
+                  name="skills"
+                  placeholder="Name one or more Skill(s)"
                   value={this.props.skills}
                   onChange={this.props.handleChange}
-                  placeholder="Name one or more Skill(s)"
                 ></textarea>
+              </div>
+              <div className="addCancelDiv">
+                <button type="submit" onClick={this.handleEdit}>
+                  Submit
+                </button>
               </div>
             </form>
           ) : (
@@ -38,17 +48,11 @@ class Skills extends React.Component {
               </h2>
               <b>Skills: </b>
               <p>{this.props.skills}</p>
+              <div className="addCancelDiv">
+                <button onClick={this.handleEdit}>Edit</button>
+              </div>
             </div>
           )}
-          <div className="addCancelDiv">
-            {!this.state.showEdit ? (
-              <button type="submit" onClick={this.handleEdit}>
-                Submit
-              </button>
-            ) : (
-              <button onClick={this.handleEdit}>Edit</button>
-            )}
-          </div>
         </div>
       </div>
     );

@@ -21,26 +21,64 @@ class Work extends React.Component {
         <h1 style={{ textAlign: "center" }}>Work Experience</h1>
         <div>
           {!this.state.showEdit ? (
-            <form className="formData" onSubmit={this.props.handleSubmit}>
+            <form
+              name="workSubmit"
+              className="formData"
+              onSubmit={this.props.handleSubmit}
+            >
               <div>
                 <label htmlFor="companyName">Company Name</label>
-                <input type="text" placeholder="Company Name"></input>
+                <input
+                  type="text"
+                  name="companyName"
+                  placeholder="Company Name"
+                  onChange={this.props.handleChange}
+                  value={this.props.companyName}
+                ></input>
               </div>
               <div>
                 <label htmlFor="role">Role</label>
-                <input type="text" placeholder="Role"></input>
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="Role"
+                  value={this.props.role}
+                  onChange={this.props.handleChange}
+                ></input>
               </div>
               <div>
                 <label htmlFor="yearsOfWork">Years of Work</label>
-                <input type="email" placeholder="Years of Work"></input>
+                <input
+                  type="email"
+                  name="yearsOfWork"
+                  placeholder="Years of Work"
+                  value={this.props.yearsOfWork}
+                  onChange={this.props.handleChange}
+                ></input>
               </div>
               <div>
-                <label htmlFor="city">City</label>
-                <input type="text" placeholder="City"></input>
+                <label htmlFor="workCity">City</label>
+                <input
+                  type="text"
+                  name="workCity"
+                  placeholder="City"
+                  onChange={this.props.handleChange}
+                  value={this.props.workCity}
+                ></input>
               </div>
               <div>
-                <label htmlFor="description">Description</label>
-                <textarea type="date" placeholder="Description"></textarea>
+                <label htmlFor="workDescription">Description</label>
+                <textarea
+                  name="workDescription"
+                  placeholder="Description"
+                  value={this.props.workDescription}
+                  onChange={this.props.handleChange}
+                ></textarea>
+              </div>
+              <div className="addCancelDiv">
+                <button type="submit" onClick={this.handleEdit}>
+                  Submit
+                </button>
               </div>
             </form>
           ) : (
@@ -68,15 +106,11 @@ class Work extends React.Component {
                 <b>Description: </b>
                 {this.props.workDescription}
               </p>
+              <div className="addCancelDiv">
+                <button onClick={this.handleEdit}>Edit</button>
+              </div>
             </div>
           )}
-          <div className="addCancelDiv">
-            {!this.state.showEdit ? (
-              <button onClick={this.handleEdit}>Submit</button>
-            ) : (
-              <button onClick={this.handleEdit}>Edit</button>
-            )}
-          </div>
         </div>
       </div>
     );

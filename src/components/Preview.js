@@ -84,7 +84,7 @@ function Preview(props) {
           <u>Skills</u>
         </h2>
         <p>
-          <b>skills: </b>
+          <b>Skills: </b>
           {props.skills}
         </p>
       </div>
