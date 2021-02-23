@@ -3,7 +3,10 @@ import React from "react";
 function Preview(props) {
   console.log(props);
   return (
-    <div className="previewDiv">
+    <div
+      style={props.visible ? { display: "none" } : { display: "block" }}
+      className="previewDiv"
+    >
       <div>
         <h2>
           <u>Info</u>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Intro from "./components/Intro";
 import Education from "./components/Education";
 import Work from "./components/Work";
@@ -6,147 +6,133 @@ import Skills from "./components/Skills";
 import Preview from "./components/Preview";
 import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      previewText: "Preview",
-      visible: true,
-      // introSubmit: false,
-      // workSubmit: false,
-      // schoolSubmit: false,
-      // skillsSubmit: false,
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      dob: "",
-      schoolName: "",
-      major: "",
-      yearsOfStudy: "",
-      schoolCity: "",
-      schoolDescription: "",
-      companyName: "",
-      role: "",
-      yearsOfWork: "",
-      workCity: "",
-      workDescription: "",
-      skills: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handlePreview = this.handlePreview.bind(this);
-  }
+const App = () => {
+  const [state, setState] = useState({
+    previewText: "Preview",
+    visible: true,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    dob: "",
+    schoolName: "",
+    major: "",
+    yearsOfStudy: "",
+    schoolCity: "",
+    schoolDescription: "",
+    companyName: "",
+    role: "",
+    yearsOfWork: "",
+    workCity: "",
+    workDescription: "",
+    skills: "",
+  });
 
-  handleChange(e) {
+  const handleChange = (e) => {
     let name = e.target.name;
-    this.setState({
-      [name]: e.target.value,
-    });
-  }
+    setState({ ...state, [name]: e.target.value });
+  };
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let formName = e.target.name;
-    this.setState((prev) => ({
-      [formName]: !prev.formName,
-    }));
+    setState((prev) => ({ ...state, [formName]: !prev.formName }));
     //Fix this??
-  }
+  };
 
-  handlePreview(e) {
-    this.setState((previousState) => ({
+  const handlePreview = (e) => {
+    setState((previousState) => ({
+      ...state,
       previewText:
         previousState.previewText === "Preview"
           ? (e.target.textContent = "Close")
           : (e.target.textContent = "Preview"),
       visible: !previousState.visible,
     }));
-  }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+  };
 
-  render() {
-    return (
-      <div className="App">
-        <h1>CV APP</h1>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <button onClick={this.handlePreview}>Preview</button>
-          {!this.state.visible ? (
-            <button onClick={window.print}>Print</button>
-          ) : null}
-        </div>
-        {this.state.visible ? (
-          <Intro
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            firstName={this.state.firstName}
-            lastName={this.state.lastName}
-            email={this.state.email}
-            phone={this.state.phone}
-            dob={this.state.dob}
-          />
-        ) : null}
-        {this.state.visible ? (
-          <Education
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            schoolName={this.state.schoolName}
-            major={this.state.major}
-            yearsOfStudy={this.state.yearsOfStudy}
-            schoolCity={this.state.schoolCity}
-            schoolDescription={this.state.schoolDescription}
-          />
-        ) : null}
-        {this.state.visible ? (
-          <Work
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            companyName={this.state.companyName}
-            role={this.state.role}
-            yearsOfWork={this.state.yearsOfWork}
-            workCity={this.state.workCity}
-            workDescription={this.state.workDescription}
-          />
-        ) : null}
-        {this.state.visible ? (
-          <Skills
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            skills={this.state.skills}
-          />
-        ) : null}
-        {!this.state.visible ? (
-          <Preview
-            firstName={this.state.firstName}
-            lastName={this.state.lastName}
-            email={this.state.email}
-            phone={this.state.phone}
-            dob={this.state.dob}
-            schoolName={this.state.schoolName}
-            major={this.state.major}
-            yearsOfStudy={this.state.yearsOfStudy}
-            schoolCity={this.state.schoolCity}
-            schoolDescription={this.state.schoolDescription}
-            companyName={this.state.companyName}
-            role={this.state.role}
-            yearsOfWork={this.state.yearsOfWork}
-            workCity={this.state.workCity}
-            workDescription={this.state.workDescription}
-            skills={this.state.skills}
-          />
-        ) : null}
+  return (
+    <div className="App">
+      <h1>CV APP</h1>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <button onClick={handlePreview}>Preview</button>
+        {!state.visible ? <button onClick={window.print}>Print</button> : null}
       </div>
-    );
-  }
-}
-//  TODO
-// consider adding a button to add work experience, etc, by making a new component
-// Add regex patterns for each input and form validation
-// Figure out error: "Form submission canceled because the form is not connected"
-// Figure out why when I come out of preview mode, the forms show back up instead of the submitted content
-// Re-arrange order of attributes in each module to stay consistent
-// Add a Date method to change Date of birth to Date String
+
+      <Intro
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        firstName={state.firstName}
+        lastName={state.lastName}
+        email={state.email}
+        phone={state.phone}
+        dob={state.dob}
+        visible={state.visible}
+      />
+
+      <Education
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        schoolName={state.schoolName}
+        major={state.major}
+        yearsOfStudy={state.yearsOfStudy}
+        schoolCity={state.schoolCity}
+        schoolDescription={state.schoolDescription}
+        visible={state.visible}
+      />
+
+      <Work
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        companyName={state.companyName}
+        role={state.role}
+        yearsOfWork={state.yearsOfWork}
+        workCity={state.workCity}
+        workDescription={state.workDescription}
+        visible={state.visible}
+      />
+
+      <Skills
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        skills={state.skills}
+        visible={state.visible}
+      />
+
+      <Preview
+        visible={state.visible}
+        firstName={state.firstName}
+        lastName={state.lastName}
+        email={state.email}
+        phone={state.phone}
+        dob={state.dob}
+        schoolName={state.schoolName}
+        major={state.major}
+        yearsOfStudy={state.yearsOfStudy}
+        schoolCity={state.schoolCity}
+        schoolDescription={state.schoolDescription}
+        companyName={state.companyName}
+        role={state.role}
+        yearsOfWork={state.yearsOfWork}
+        workCity={state.workCity}
+        workDescription={state.workDescription}
+        skills={state.skills}
+      />
+    </div>
+  );
+};
+
+//            TODO
+//        consider adding a button to add work experience, etc, by making a new component (practice creating and deleting Components)
+//        ^^^^^ also add a delete button to remove
+//         Add regex patterns for each input and form validation (required attribute)
+//        Add additional styling such as :selected and :hover
+//        Figure out error: "Form submission canceled because the form is not connected"
+// DONE   Figure out why when I come out of preview mode, the forms show back up instead of the submitted content
+// DONE    >> FIX BY: Conditionally render the styles of each component 'style={this.state.visible ? { display: "none" } : {}}'
+// DONE               Possibly need to pass down a prop to each component and then conditionally render the style in that component
+// DONE   Re-arrange order of attributes in each module to stay consistent
+//        Add a Date method to change Date of birth to Date String
+// DONE   Change to functional component and use hooks
 
 export default App;
